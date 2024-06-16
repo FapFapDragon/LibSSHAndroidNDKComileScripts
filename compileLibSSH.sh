@@ -16,8 +16,8 @@ sed -i 's/_S_IWRITE/S_IWUSR/g' libssh_source/src/misc.c
 sed -i 's/S_IWRITE/S_IWUSR/g' libssh_source/src/misc.c
 
 rm -rf libssh_$ANDROID_API
-cp -R libssh_source libssh_$ANDROID_API
-cd libssh_$ANDROID_API
+cp -R libssh_source libssh_$architecture
+cd libssh_$architecture
 mkdir build
 cd build
 
@@ -46,7 +46,7 @@ cmake --build
 make install
 cp src/libssh.a $SCRIPTPATH/libssh_$ANDROID_API/lib/
 cd $SCRIPTPATH
-rm -rf libssh_$ANDROID_API
+rm -rf libssh_$architecture
 	
 ANDROID_API="armeabi-v7a"
 API_LEVEL=27
@@ -57,8 +57,8 @@ architecture=android-arm
 OUTPUT_LIBS_DIR="libs/${ANDROID_API}"
 cd $SCRIPTPATH
 rm -rf libssh_$ANDROID_API
-cp -R libssh_source libssh_$ANDROID_API
-cd libssh_$ANDROID_API
+cp -R libssh_source libssh_$architecture
+cd libssh_$architecture
 mkdir build
 cd build
 
@@ -85,5 +85,5 @@ cmake --build
 make install
 cp src/libssh.a $SCRIPTPATH/libssh_$ANDROID_API/lib/
 cd $SCRIPTPATH
-rm -rf libssh_$ANDROID_API
+rm -rf libssh_$architecture
 
