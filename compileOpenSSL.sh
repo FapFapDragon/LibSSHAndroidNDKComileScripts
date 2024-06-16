@@ -17,12 +17,13 @@ ANDROID_API=27
 # Set the target architecture
 # Can be android-arm, android-arm64, android-x86, android-x86 etc
 architecture=android-arm
+ANDROID_ABI=arm64-v8a
 
 git clone https://github.com/openssl/openssl.git $OPENSSL_DIR
  
 cd $OPENSSL_DIR
 
-./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API -fPIC --prefix=$SCRIPTPATH/openssl_$ANDROID_API --openssldir=$SCRIPTPATH/openssl_$ANDROID_API/openssl_dir 
+./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API -fPIC --prefix=$SCRIPTPATH/openssl_$ANDROID_ABI --openssldir=$SCRIPTPATH/openssl_$ANDROID_ABI/openssl_dir 
 
 make clean 
 
@@ -32,8 +33,9 @@ make
 
 make install
 
+ANDROID_ABI=arm64-v8a
 architecture=android-arm64
-./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API --prefix=$SCRIPTPATH/openssl_$ANDROID_API --openssldir=$SCRIPTPATH/openssl_$ANDROID_API/openssl_dir
+./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API --prefix=$SCRIPTPATH/openssl_$ANDROID_ABI --openssldir=$SCRIPTPATH/openssl_$ANDROID_ABI/openssl_dir
 
 make clean 
 
