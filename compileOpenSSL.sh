@@ -1,4 +1,4 @@
-SCRIPTPATH=/home/vm/Downloads/LibSSH
+SCRIPTPATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export ANDROID_NDK_HOME=$SCRIPTPATH/android-ndk-r26d
 export ANDROID_NDK_ROOT=$SCRIPTPATH/android-ndk-r26d
 OPENSSL_DIR=$SCRIPTPATH/openssl-master
@@ -22,7 +22,7 @@ git clone https://github.com/openssl/openssl.git $OPENSSL_DIR
  
 cd $OPENSSL_DIR
 
-./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API -fPIC --prefix=$SCRIPTPATH/openssl_$architecture --openssldir=$SCRIPTPATH/openssl_$architecture/openssl_dir 
+./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API -fPIC --prefix=$SCRIPTPATH/openssl_$ANDROID_API --openssldir=$SCRIPTPATH/openssl_$ANDROID_API/openssl_dir 
 
 make clean 
 
@@ -33,7 +33,7 @@ make
 make install
 
 architecture=android-arm64
-./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API --prefix=$SCRIPTPATH/openssl_$architecture --openssldir=$SCRIPTPATH/openssl_$architecture/openssl_dir
+./Configure $architecture -D__ANDROID_MIN_SDK_VERSION__=$ANDROID_API --prefix=$SCRIPTPATH/openssl_$ANDROID_API --openssldir=$SCRIPTPATH/openssl_$ANDROID_API/openssl_dir
 
 make clean 
 

@@ -1,7 +1,7 @@
 ANDROID_API="arm64-v8a"
 API_LEVEL=27
 BUILD_SHARED_LIB=0
-SCRIPTPATH=/home/vm/Downloads/LibSSH
+SCRIPTPATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export ANDROID_NDK_ROOT=$SCRIPTPATH/android-ndk-r26d
 NDK_TOOLCHAIN_PATH=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake
 architecture=android-arm64
@@ -25,14 +25,14 @@ make clean
 rm -rf 
 
 cmake \
-	-DCMAKE_INSTALL_PREFIX=$SCRIPTPATH/libssh_$architecture \
+	-DCMAKE_INSTALL_PREFIX=$SCRIPTPATH/libssh_$ANDROID_API \
 	-DWITH_INTERNAL_DOC=OFF \
 	-DWITH_GSSAPI=OFF \
 	-DWITH_NACL=OFF \
 	-DWITH_EXAMPLES=OFF \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DOPENSSL_INCLUDE_DIR=$SCRIPTPATH/openssl_$architecture/include \
-	-DOPENSSL_CRYPTO_LIBRARY=$SCRIPTPATH/openssl_$architecture/lib/libcrypto.a \
+	-DOPENSSL_INCLUDE_DIR=$SCRIPTPATH/openssl_$ANDROID_API/include \
+	-DOPENSSL_CRYPTO_LIBRARY=$SCRIPTPATH/openssl_$ANDROID_API/lib/libcrypto.a \
 	-DCMAKE_TOOLCHAIN_FILE=${NDK_TOOLCHAIN_PATH} \
 	-DANDROID_NDK=${ANDROID_NDK_ROOT} \
 	-DANDROID_NATIVE_API_LEVEL=android-${API_LEVEL} \
@@ -44,7 +44,7 @@ cmake \
 	..
 cmake --build 
 make install
-cp src/libssh.a $SCRIPTPATH/libssh_$architecture/lib/
+cp src/libssh.a $SCRIPTPATH/libssh_$ANDROID_API/lib/
 cd $SCRIPTPATH
 rm -rf libssh_$ANDROID_API
 	
@@ -64,14 +64,14 @@ mkdir build
 cd build
 
 cmake \
-	-DCMAKE_INSTALL_PREFIX=$SCRIPTPATH/libssh_$architecture \
+	-DCMAKE_INSTALL_PREFIX=$SCRIPTPATH/libssh_$ANDROID_API \
 	-DWITH_INTERNAL_DOC=OFF \
 	-DWITH_GSSAPI=OFF \
 	-DWITH_NACL=OFF \
 	-DWITH_EXAMPLES=OFF \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DOPENSSL_INCLUDE_DIR=$SCRIPTPATH/openssl_$architecture/include \
-	-DOPENSSL_CRYPTO_LIBRARY=$SCRIPTPATH/openssl_$architecture/lib/libcrypto.a \
+	-DOPENSSL_INCLUDE_DIR=$SCRIPTPATH/openssl_$ANDROID_API/include \
+	-DOPENSSL_CRYPTO_LIBRARY=$SCRIPTPATH/openssl_$ANDROID_API/lib/libcrypto.a \
 	-DCMAKE_TOOLCHAIN_FILE=${NDK_TOOLCHAIN_PATH} \
 	-DANDROID_NDK=${ANDROID_NDK_ROOT} \
 	-DANDROID_NATIVE_API_LEVEL=android-${API_LEVEL} \
@@ -84,7 +84,7 @@ cmake \
 	
 cmake --build 
 make install
-cp src/libssh.a $SCRIPTPATH/libssh_$architecture/lib/
+cp src/libssh.a $SCRIPTPATH/libssh_$ANDROID_API/lib/
 cd $SCRIPTPATH
 rm -rf libssh_$ANDROID_API
 
