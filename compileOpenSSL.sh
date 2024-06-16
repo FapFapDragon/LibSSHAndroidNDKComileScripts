@@ -17,7 +17,7 @@ ANDROID_API=27
 # Set the target architecture
 # Can be android-arm, android-arm64, android-x86, android-x86 etc
 architecture=android-arm
-ANDROID_ABI=arm64-v8a
+ANDROID_ABI=armeabi-v7a
 
 git clone https://github.com/openssl/openssl.git $OPENSSL_DIR
  
