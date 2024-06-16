@@ -51,7 +51,6 @@ rm -rf libssh_$ANDROID_API
 ANDROID_API="armeabi-v7a"
 API_LEVEL=27
 BUILD_SHARED_LIB=0
-SCRIPTPATH=/home/vm/Downloads/LibSSH
 export ANDROID_NDK_ROOT=$SCRIPTPATH/android-ndk-r26d
 NDK_TOOLCHAIN_PATH=$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake
 architecture=android-arm
